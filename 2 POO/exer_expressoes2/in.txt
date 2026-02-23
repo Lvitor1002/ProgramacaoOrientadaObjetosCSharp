@@ -1,0 +1,8 @@
+Caderno, 2500.00  
+Lapis, 4100.75  
+Garrafa, 3000.00  
+Bola, 3800.50  
+Barquinho, 2750.25  
+Sacola, 4500.90  
+Pente, 3300.00  
+Palito, 300.00  

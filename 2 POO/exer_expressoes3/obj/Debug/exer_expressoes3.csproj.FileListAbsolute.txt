@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\bin\Debug\exer_expressoes3.exe.config
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\bin\Debug\exer_expressoes3.exe
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\bin\Debug\exer_expressoes3.pdb
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\obj\Debug\exer_expressoes3.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\obj\Debug\exer_expressoes3.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\obj\Debug\exer_expressoes3.exe
+C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_expressoes3\obj\Debug\exer_expressoes3.pdb

@@ -1,0 +1,239 @@
+                            
+                            
+                            Enunciado: 
+
+Sistema de Gestão de Ativos de TI com Controle de Ciclo de Vida
+Problema:
+        Uma empresa de tecnologia precisa gerenciar o ciclo de vida completo de seus ativos de TI (computadores, servidores, periféricos). 
+        O sistema deve controlar o status de cada ativo desde a aquisição até o descarte, com alertas de manutenção preventiva e integração com fluxos de aprovação.
+
+
+
+
+
+                            Requisitos Técnicos
+
+
+Modelagem de Classes:
+
+                        Ativo (ID, Tipo, Modelo, DataAquisicao, Valor, Localizacao)
+
+                        Manutencao (ID, IDAtivo, DataAgendada, TecnicoResponsavel, CustoEstimado)
+
+                        CicloVida (Status: [Novo, EmUso, Manutencao, Descartado])
+
+                        SolicitacaoDescarte (IDAtivo, Motivo, DataSolicitacao, Aprovado)
+
+
+
+
+
+Funcionalidades:
+
+                Registrar novos ativos com validação de dados
+
+                Transições de status controladas por regras de negócio:
+
+                Ativo em uso > Manutenção: Gera registro de manutenção
+
+                Manutenção > Descarte: Requer aprovação de 3 níveis hierárquicos
+
+
+
+
+
+Alertas automáticos:
+
+                    Manutenção preventiva (30 dias antes do vencimento da garantia)
+
+                    Ativos ociosos (>90 dias sem uso)
+
+
+
+
+Relatórios:
+
+            Valor total de ativos por localização
+
+            Histórico completo de um ativo
+
+            Custo de manutenção mensal
+
+
+
+
+Regras de Negócio Complexas:
+
+                            Cálculo de depreciação (método linear)
+
+
+
+
+Validação de descarte:
+
+                    Ativos com valor residual > 10% do original requerem justificativa especial
+
+                    Aprovações devem seguir hierarquia: Supervisor > Gerente > Diretor
+
+                    Integração fictícia com serviço externo de cotação de manutenção
+
+
+
+Persistência:
+
+            Armazenamento em JSON/XML
+
+            Serialização de coleções
+
+            Histórico de alterações
+
+
+
+Interface:
+
+            Menu console com opções numeradas
+
+            Cores para alertas críticos
+
+            Formatação tabular para relatórios
+
+
+
+Desafios Adicionais:
+
+            Implementar padrão Repository para persistência
+
+            Criar sistema de aprovação de descarte com Chain of Responsibility
+
+            Gerar relatório em formato de tabela no console
+
+            Implementar log de auditoria com padrão Observer
+
+            Adicionar tratamento de exceções personalizadas
+
+
+
+
+            Saída Esperada:
+
+=== Sistema de Gestão de Ativos de TI ===
+
+            1. Registrar novo ativo
+            2. Listar ativos
+            3. Agendar manutenção
+            4. Solicitar descarte
+            5. Verificar alertas
+            6. Gerar relatórios
+            0. Sair
+
+Opção: 5
+
+[ALERTA] 2 ativos requerem atenção:
+            - Notebook Dell XPS (ID: 1001): Garantia expira em 15 dias
+            - Servidor HP DL380 (ID: 2003): Ocioso há 120 dias
+
+
+
+
+
+
+-----------------
+
+
+
+
+
+                                Exemplo de Código
+
+// Enums.cs
+public enum TipoAtivo { Desktop, Notebook, Servidor, Periferico }
+public enum StatusCicloVida { Novo, EmUso, Manutencao, Descartado }
+
+// Ativo.cs
+public class Ativo
+{
+    public int ID { get; }
+    public TipoAtivo Tipo { get; set; }
+    public string Modelo { get; set; }
+    public DateTime DataAquisicao { get; }
+    public decimal ValorOriginal { get; }
+    public decimal ValorAtual => CalcularDepreciacao();
+    public string Localizacao { get; set; }
+    public StatusCicloVida Status { get; private set; }
+    public List<Manutencao> HistoricoManutencoes { get; } = new();
+    
+    public Ativo(TipoAtivo tipo, string modelo, decimal valor, string local)
+    {
+        // Implementar construtor com ID autoincrementado
+    }
+    
+    private decimal CalcularDepreciacao()
+    {
+        // Regra: Depreciação linear de 20% ao ano
+    }
+    
+    public void AtualizarStatus(StatusCicloVida novoStatus)
+    {
+        // Implementar regras de transição de status
+    }
+}
+
+// Manutencao.cs
+public class Manutencao
+{
+    public int ID { get; }
+    public int AtivoID { get; }
+    public DateTime DataAgendada { get; set; }
+    public string Tecnico { get; set; }
+    public decimal Custo { get; set; }
+    public bool Preventiva { get; set; }
+}
+
+// GerenciadorAtivos.cs
+public class GerenciadorAtivos
+{
+    private List<Ativo> _ativos = new();
+    private readonly IManutencaoService _servicoManutencao;
+    
+    public GerenciadorAtivos(IManutencaoService servico)
+    {
+        _servicoManutencao = servico;
+    }
+    
+    public void RegistrarNovoAtivo(TipoAtivo tipo, string modelo, decimal valor, string local)
+    {
+        // Validar dados e adicionar à lista
+    }
+    
+    public void AgendarManutencao(int ativoID, DateTime data, bool preventiva)
+    {
+        // Integrar com serviço externo para cotação de custo
+        decimal custo = _servicoManutencao.SolicitarCotacao(ativoID, preventiva);
+        // Criar registro de manutenção
+    }
+    
+    public void VerificarAlertas()
+    {
+        // Implementar lógica de alertas:
+        // - Garantia expirando em 30 dias
+        // - Ativos ociosos
+    }
+}
+
+// Interfaces para serviços externos
+public interface IManutencaoService
+{
+    decimal SolicitarCotacao(int ativoID, bool preventiva);
+}
+
+// Implementação fictícia
+public class ManutencaoServiceSimulador : IManutencaoService
+{
+    public decimal SolicitarCotacao(int ativoID, bool preventiva)
+    {
+        // Lógica simulada baseada no tipo de ativo
+        return preventiva ? 150m : 300m;
+    }
+}
+
+-----------------

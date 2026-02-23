@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\bin\Debug\exer_interface.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\bin\Debug\exer_interface.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\bin\Debug\exer_interface.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\obj\Debug\exer_interface.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\obj\Debug\exer_interface.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\obj\Debug\exer_interface.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface\obj\Debug\exer_interface.pdb

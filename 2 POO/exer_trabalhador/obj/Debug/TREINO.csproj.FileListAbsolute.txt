@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\TREINO\bin\Debug\TREINO.exe.config
+C:\Users\Luiz\Desktop\c#\TREINO\bin\Debug\TREINO.exe
+C:\Users\Luiz\Desktop\c#\TREINO\bin\Debug\TREINO.pdb
+C:\Users\Luiz\Desktop\c#\TREINO\obj\Debug\TREINO.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\TREINO\obj\Debug\TREINO.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\TREINO\obj\Debug\TREINO.exe
+C:\Users\Luiz\Desktop\c#\TREINO\obj\Debug\TREINO.pdb

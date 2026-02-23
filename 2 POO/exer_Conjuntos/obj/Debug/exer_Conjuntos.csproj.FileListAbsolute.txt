@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\bin\Debug\exer_Conjuntos.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\bin\Debug\exer_Conjuntos.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\bin\Debug\exer_Conjuntos.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\obj\Debug\exer_Conjuntos.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\obj\Debug\exer_Conjuntos.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\obj\Debug\exer_Conjuntos.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos\obj\Debug\exer_Conjuntos.pdb

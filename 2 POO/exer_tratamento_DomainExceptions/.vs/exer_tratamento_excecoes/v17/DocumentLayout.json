@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_tratamento_excecoes\\entities\\exceptions\\dominioexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|solutionrelative:entities\\exceptions\\dominioexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\entities\\reserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A40BB7B5-18C4-4E7E-9485-4E32859DE244}|exer_tratamento_excecoes.csproj|solutionrelative:entities\\reserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 277,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reserva.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Entities\\Reserva.cs",
+              "RelativeDocumentMoniker": "Entities\\Reserva.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Entities\\Reserva.cs",
+              "RelativeToolTip": "Entities\\Reserva.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAkwCgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T11:07:54.441Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DominioException.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Entities\\Exceptions\\DominioException.cs",
+              "RelativeDocumentMoniker": "Entities\\Exceptions\\DominioException.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Entities\\Exceptions\\DominioException.cs",
+              "RelativeToolTip": "Entities\\Exceptions\\DominioException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T13:05:39.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAwIEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T11:02:56.755Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

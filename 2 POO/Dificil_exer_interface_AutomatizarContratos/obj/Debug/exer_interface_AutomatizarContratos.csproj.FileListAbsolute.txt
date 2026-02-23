@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\bin\Debug\exer_interface_AutomatizarContratos.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\bin\Debug\exer_interface_AutomatizarContratos.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\bin\Debug\exer_interface_AutomatizarContratos.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\obj\Debug\exer_interface_AutomatizarContratos.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\obj\Debug\exer_interface_AutomatizarContratos.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\obj\Debug\exer_interface_AutomatizarContratos.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_interface_AutomatizarContratos\obj\Debug\exer_interface_AutomatizarContratos.pdb

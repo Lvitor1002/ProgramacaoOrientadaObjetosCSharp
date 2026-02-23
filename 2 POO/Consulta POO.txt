@@ -1,0 +1,272 @@
+
+-----------------------------------------------------------------------------------------------------------------
+Indentação automática: CTRL + K + D
+
+
+-----------------------------------------------------------------------------------------------------------------
+Construtor:  O construtor define valores iniciais para um objeto e garante que ele esteja pronto para uso assim que for criado.
+
+-----------------------------------------------------------------------------------------------------------------
+Sobrecarga: A sobrecarga (overloading) em C# permite que uma classe tenha métodos ou construtores com o mesmo nome, mas com assinaturas diferentes (ou seja, diferentes tipos ou quantidades de parâmetros).
+
+exemplo: MESMO MÉTODO COM DIFERENTES PARÂMETROS 
+
+class Calculadora
+{
+    // Método para somar dois números inteiros
+
+    public int Somar(int a, int b)
+    {
+        return a + b;
+    }
+
+    // Método para somar três números inteiros
+
+    public int Somar(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    // Método para somar dois números decimais
+
+    public double Somar(double a, double b)
+    {
+        return a + b;
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+This: 
+
+-Diferenciar atributos de parâmetros com o mesmo nome:
+                                            public Produto(string Nome)
+                                                {
+                                                    this.Nome = Nome; // "this.Nome" refere-se ao atributo da classe
+                                                }
+    
+-Encadear construtores - Juntar:
+                                public Produto(string nome) : this(nome, 0.0) { } 
+                                // Chama outro construtor, sem a necessidade de repetilo, basta apenas chamar com this.
+
+
+[this é útil para referenciar a instância atual e evitar ambiguidades no código]
+
+-----------------------------------------------------------------------------------------------------------------
+Encapsulamento: Ele se refere à prática de esconder os detalhes internos de uma classe e expor apenas as funcionalidades necessárias para o exterior. Isso ajuda a proteger os dados e garantir que as interações com um objeto sejam feitas de maneira controlada.
+
+private: Acesso restrito à própria classe.
+
+public: Acesso de qualquer lugar.
+
+protected: Acesso apenas dentro da classe e classes derivadas.
+
+internal: Acesso dentro do mesmo assembly.
+
+ 
+-----------------------------------------------------------------------------------------------------------------
+
+Ordem para implementação de membros de classe:
+
+1ª: Atributos private
+|
+2ª: Propriedades autoimplementadas
+|
+3ª: Construtores
+|
+4ª: Propriedades customizadas/personalizadas com condicional
+|
+5ª: Métodos da classe
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+ENUMERAÇÕES - (Enum) 
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Classes abstratas:
+
+Classes abstratas são classes que não podem ser instanciadas diretamente e servem como um modelo para outras classes. 
+Elas podem conter métodos com implementação e métodos abstratos (sem implementação), 
+que devem ser obrigatoriamente implementados pelas classes que as herdam.
+
+Métodos abstratos:
+
+Métodos abstratos são métodos declarados em uma classe abstrata que não possuem implementação, apenas a assinatura. Eles devem ser implementados obrigatoriamente pelas classes que herdam dessa classe abstrata.
+
+-----------------------------------------------------------------------------------------------------------------
+
+Quando usar try-catch?
+
+O try-catch é útil quando:
+                         O código pode falhar por diversos motivos inesperados.
+                         Você precisa registrar logs de erro detalhados.
+                         Está lidando com cálculos complexos ou operações críticas.
+Mas, para validação de entrada simples, TryParse é a melhor escolha! 
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+O [static] em C# indica que o método ou variável pertence à classe e não a uma instância específica. 
+Ou seja; 
+       >pode ser acessado sem precisar criar um objeto da classe.
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+Diferença fundamental entre Herança & Interface:
+                                               • Herança => reuso
+                                               • Interface => contrato a ser cumprido
+
+Interface = contrato que obriga uma classe a implementar certos métodos/propriedades.
+public interface IVeiculo
+{
+    void Ligar();
+    void Desligar();
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+                                                    COMPARAÇÃO
+
+
+GetHashCode(): Gera um código hash (usado em coleções).
+
+Equals(): Verifica se dois objetos são iguais em termos de [conteúdo].
+
+==: Verifica igualdade (por padrão, compara referências, mas pode ser sobrescrito).
+
+
+• UnionWith(other) - operação união: adiciona no conjunto os elementos do outro conjunto, sem repetição
+• IntersectWith(other) - operação interseção: remove do conjunto os elementos não contidos em other 
+• ExceptWith(other) - operação diferença: remove do conjunto os elementos contidos em other
+
+-----------------------------------------------------------------------------------------------------------------
+
+O polimorfismo em C# é um dos pilares da Programação Orientada a Objetos (POO) e permite que uma mesma interface ou método tenha diferentes comportamentos dependendo do contexto em que é utilizado. Ele pode ser dividido em dois tipos principais:
+
+Polimorfismo de sobrecarga (Compile-time Polymorphism) – Ocorre quando há vários métodos com o mesmo nome, mas com diferentes assinaturas dentro da mesma classe.
+
+Polimorfismo de substituição (Runtime Polymorphism) – Acontece quando uma classe filha sobrescreve um método da classe base usando override, geralmente associado ao uso de herança e métodos virtuais.
+
+using System;
+
+class Animal
+{
+    public virtual void FazerSom()
+    {
+        Console.WriteLine("O animal faz um som.");
+    }
+}
+
+class Cachorro : Animal
+{
+    public override void FazerSom()
+    {
+        Console.WriteLine("O cachorro late: Au Au!");
+    }
+}
+
+class Gato : Animal
+{
+    public override void FazerSom()
+    {
+        Console.WriteLine("O gato mia: Miau!");
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+1. *Encapsulamento* – Restringe o acesso direto aos dados de um objeto, permitindo manipulação apenas por métodos específicos, garantindo segurança e organização. 
+
+public class ContaBancaria
+{
+    private double saldo; // acesso restrito
+
+    public void Depositar(double valor)
+    {
+        if (valor > 0)
+            saldo += valor;
+    }
+
+    public double ObterSaldo()
+    {
+        return saldo;
+    }
+}
+
+
+#######################################################
+2. *Herança* – Permite que uma classe reutilize atributos e métodos de outra, facilitando o reaproveitamento de código e a hierarquização.  
+
+public class Animal
+{
+    public void Comer()
+    {
+        Console.WriteLine("O animal está comendo.");
+    }
+}
+
+public class Cachorro : Animal
+{
+    public void Latir()
+    {
+        Console.WriteLine("O cachorro está latindo.");
+    }
+}
+
+
+#######################################################
+3. *Polimorfismo* – Permite que métodos tenham diferentes comportamentos dependendo da classe que os implementa, aumentando a flexibilidade do código.  
+
+public class Animal
+{
+    public virtual void EmitirSom()
+    {
+        Console.WriteLine("O animal faz um som.");
+    }
+}
+
+public class Gato : Animal
+{
+    public override void EmitirSom()
+    {
+        Console.WriteLine("O gato mia.");
+    }
+}
+
+public class Cachorro : Animal
+{
+    public override void EmitirSom()
+    {
+        Console.WriteLine("O cachorro late.");
+    }
+}
+
+
+#######################################################
+4. *Abstração* – Destaca apenas as características essenciais de um objeto, ocultando detalhes internos e simplificando o uso de classes e interfaces.
+
+public abstract class Veiculo
+{
+    public abstract void Mover();
+}
+
+public class Carro : Veiculo
+{
+    public override void Mover()
+    {
+        Console.WriteLine("O carro está se movendo.");
+    }
+}
+
+#######################################################
+
+Protegendo API JWT - C#
+https://www.youtube.com/watch?v=EmonymV_Jx0&list=PLJ0IKu7KZpCTydptihmDPxeNEh6yb1wtY&index=5

@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\bin\Debug\exer_tratamento_excecoes.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\bin\Debug\exer_tratamento_excecoes.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\bin\Debug\exer_tratamento_excecoes.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\obj\Debug\exer_tratamento_excecoes.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\obj\Debug\exer_tratamento_excecoes.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\obj\Debug\exer_tratamento_excecoes.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_tratamento_excecoes\obj\Debug\exer_tratamento_excecoes.pdb

@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\bin\Debug\exer_polimorfismo_EmpresaFuncionarios.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\bin\Debug\exer_polimorfismo_EmpresaFuncionarios.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\bin\Debug\exer_polimorfismo_EmpresaFuncionarios.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\obj\Debug\exer_polimorfismo_EmpresaFuncionarios.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\obj\Debug\exer_polimorfismo_EmpresaFuncionarios.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\obj\Debug\exer_polimorfismo_EmpresaFuncionarios.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_polimorfismo_EmpresaFuncionarios\obj\Debug\exer_polimorfismo_EmpresaFuncionarios.pdb

@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_contribuentes\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_contribuentes\\entities\\pessoajuridica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|solutionrelative:entities\\pessoajuridica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_contribuentes\\entities\\contribuintes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|solutionrelative:entities\\contribuintes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_contribuentes\\entities\\pessoafisica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEBBB08B-E513-40F3-B719-C3706FB8A4D7}|exer_Contribuentes.csproj|solutionrelative:entities\\pessoafisica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 277,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Contribuintes.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\Contribuintes.cs",
+              "RelativeDocumentMoniker": "Entities\\Contribuintes.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\Contribuintes.cs",
+              "RelativeToolTip": "Entities\\Contribuintes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T13:40:54.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PessoaFisica.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\PessoaFisica.cs",
+              "RelativeDocumentMoniker": "Entities\\PessoaFisica.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\PessoaFisica.cs",
+              "RelativeToolTip": "Entities\\PessoaFisica.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T13:39:39.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PessoaJuridica.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\PessoaJuridica.cs",
+              "RelativeDocumentMoniker": "Entities\\PessoaJuridica.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Entities\\PessoaJuridica.cs",
+              "RelativeToolTip": "Entities\\PessoaJuridica.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T13:39:04.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_Contribuentes\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAqwKsAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T13:04:04.216Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\bin\Debug\exer_Conjuntos_Dicionario.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\bin\Debug\exer_Conjuntos_Dicionario.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\bin\Debug\exer_Conjuntos_Dicionario.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\obj\Debug\exer_Conjuntos_Dicionario.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\obj\Debug\exer_Conjuntos_Dicionario.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\obj\Debug\exer_Conjuntos_Dicionario.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\obj\Debug\exer_Conjuntos_Dicionario.pdb

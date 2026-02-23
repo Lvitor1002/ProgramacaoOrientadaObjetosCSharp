@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9958A821-7D98-4BAE-AC0A-355DBF82A7FB}|exer_tratamento_excecoes2.csproj|C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\entities\\contabancaria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9958A821-7D98-4BAE-AC0A-355DBF82A7FB}|exer_tratamento_excecoes2.csproj|solutionrelative:entities\\contabancaria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9958A821-7D98-4BAE-AC0A-355DBF82A7FB}|exer_tratamento_excecoes2.csproj|c:\\users\\luiz\\desktop\\c#\\14 poo avan\u00E7ado\\exer_tratamento_excecoes2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9958A821-7D98-4BAE-AC0A-355DBF82A7FB}|exer_tratamento_excecoes2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 277,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ContaBancaria.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\Entities\\ContaBancaria.cs",
+              "RelativeDocumentMoniker": "Entities\\ContaBancaria.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\Entities\\ContaBancaria.cs*",
+              "RelativeToolTip": "Entities\\ContaBancaria.cs*",
+              "ViewState": "AgIAABIAAAAAAAAAAAAUwB8AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T11:14:25.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Luiz\\Desktop\\c#\\14 POO Avan\u00E7ado\\exer_tratamento_excecoes2\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAACAAAAAAAAAAAAAywCoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T10:58:43Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\bin\Debug\exer_portal_cursos_Conjunto.exe.config
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\bin\Debug\exer_portal_cursos_Conjunto.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\bin\Debug\exer_portal_cursos_Conjunto.pdb
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\obj\Debug\exer_portal_cursos_Conjunto.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\obj\Debug\exer_portal_cursos_Conjunto.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\obj\Debug\exer_portal_cursos_Conjunto.exe
+C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_portal_cursos_Conjunto\obj\Debug\exer_portal_cursos_Conjunto.pdb

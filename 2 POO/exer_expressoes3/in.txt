@@ -1,0 +1,8 @@
+João, joao@gmail.com, 2500.00  
+Ana, ana@yahoo.com, 4100.75  
+Carlos, carlos@hotmail.com, 3000.00  
+Beatriz, bia@gmail.com, 3800.50  
+Felipe, felipe@yahoo.com, 2750.25  
+Juliana, juliana@hotmail.com, 4500.90  
+Roberto, roberto@gmail.com, 3300.00  
+Maria, maria@gmail.com, 300.00  
