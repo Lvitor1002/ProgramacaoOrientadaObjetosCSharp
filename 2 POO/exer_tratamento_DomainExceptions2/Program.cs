@@ -16,138 +16,89 @@ Um saque não pode ocorrer;
 
  */
 
-
-
 using System;
-using System.Linq;
 using System.Globalization;
-
-using TREINO.Entities;
-using TREINO.Entities.Exceptions;
-
+using System.Linq;
+using treino.Entities;
+using treino.Exception;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
+            => PopularConta();
+        
+        private static void PopularConta()
         {
-            Exibir();
-        }
-        static ContaBancaria Leitura()
-        {
-            string nome;
+            string titular;
             int numeroConta;
-            double valor;
+            decimal valorSaque, valorDeposito;
 
             while (true)
             {
-                Console.Write(">Digite o número da conta: ");
-                string nconta = Console.ReadLine().Trim();
-                if(int.TryParse(nconta, out numeroConta))
-                {
-                    break;
-                }
-                else
+                Console.Write("Digite o número da conta: ");
+                string entrada = Console.ReadLine().Trim();
+                if(!int.TryParse(entrada, out numeroConta) || numeroConta <= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Certifique-se de que o número da conta esteja válido!");
+                    Console.WriteLine("Número de conta inválido. Digite um número 'inteiro' e positivo.");
+                    continue;
                 }
+                break;
             }
             while (true)
             {
-                Console.Write(">Digite o nome do titular da conta: ");
-                nome = Console.ReadLine().Trim().ToLower();
-                if (!string.IsNullOrWhiteSpace(nome) && nome.All(c=>char.IsLetter(c)|| c== ' '))
-                {
-                    nome = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nome.ToLower());
-                    break;
-                }
-                else
+                Console.Write("Digite o nome do titular da conta: ");
+                titular = Console.ReadLine().Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(titular) && titular.All(c=>char.IsLetter(c) || c == ' '))
                 {
                     Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Digite um nome válido!");
+                    Console.WriteLine("Entrada inválida. Entre com um nome válido");
+                    continue;
                 }
+                titular = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(titular.ToLower());
+                break;
             }
-            ContaBancaria cb = new ContaBancaria(numeroConta, nome);
-
-            Console.Clear();
+            ContaBancaria conta = new ContaBancaria(numeroConta, titular);
+            
             while (true)
             {
-                Console.Write($">{nome}, deseja depositar um valor à sua conta? [Sim/Não]: ");
-                string op = Console.ReadLine().Trim().ToLower();
-                if(op == "sim")
-                {
-                    while (true)
-                    {
-                        Console.Write(">Digite o valor que deseja depositar na conta: ");
-                        string v = Console.ReadLine().Trim();
-                        if (double.TryParse(v, NumberStyles.Any, CultureInfo.InvariantCulture, out valor) && valor >= 0)
-                        {
-                            cb.Deposito(valor);
-                            break;
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine(">Entrada inválida. Certifique-se de que o valor de deposito seja maior que zero!");
-                        }
-                    }
-                    break;
-                }
-                if(op == "não")
-                {
-                    break;
-                }
-                else
+                Console.Write("Digite um valor para deposito na conta: R$");
+                string entrada = Console.ReadLine().Trim();
+                if (!decimal.TryParse(entrada, out valorDeposito) || valorDeposito <= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Digite apenas 'sim' ou 'não'!");
+                    Console.WriteLine("Valor de deposito inválido. Digite um número 'inteiro' ou 'decimal' e positivo.");
+                    continue;
                 }
+                conta.Depositar(valorDeposito);
+                break;
             }
-
-            Console.Clear();
             while (true)
             {
-                Console.Write($">{nome}, deseja relizar um saque? [Sim/Não]: ");
-                string op = Console.ReadLine().Trim().ToLower();
-                if (op == "sim")
+                Console.Write("Digite um valor para saque na conta: R$");
+                string entrada = Console.ReadLine().Trim();
+                if (!decimal.TryParse(entrada, out valorSaque) || valorSaque <= 0)
                 {
-                    try
-                    {
-                        while (true)
-                        {
-                            Console.Write(">Digite o valor que deseja sacar da conta: ");
-                            string v = Console.ReadLine().Trim();
-                            valor = 0;
-                            if (double.TryParse(v, NumberStyles.Any, CultureInfo.InvariantCulture, out valor) && valor >= 0)
-                            {
-                                cb.Saque(valor);
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                    catch (DomainExceptions e)
-                    {
-                        Console.Clear();
-                        Console.WriteLine($"\n>Atenção: {e.Message}\n\n");
-                    }
-                } 
-                if(op == "não")
+                    Console.Clear();
+                    Console.WriteLine("Valor de saque inválido. Digite um número 'inteiro' ou 'decimal' e positivo.");
+                    continue;
+                }
+                try
                 {
+                    conta.Sacar(valorSaque);
                     break;
                 }
+                catch (ExceptionPersonalizada ex)
+                {
+                    Console.Clear();
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
             }
-            return cb;
-        }
-        static void Exibir()
-        {
-            var cb = Leitura();
-
             Console.Clear();
-            Console.WriteLine("\t\tDados da conta\n");
-            Console.WriteLine(cb);
+            Console.WriteLine(conta.ToString());
         }
     }
 }

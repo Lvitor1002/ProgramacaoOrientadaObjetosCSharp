@@ -1,67 +1,40 @@
 ﻿
-/*
-Fazer um programa para ler os dados de uma conta bancária:
-                                                          Número:
-                                                          Titular 
-e depois realizar um saque nesta conta bancária:
-                                                Quantos $ deseja sacar?
-Por fim, exiba o saldo atual. 
-
-Um saque não pode ocorrer;
-                          se o saldo da conta for menor que o saque, 
-                                       ou 
-                          se o valor do saque for superior ao limite de saque da conta. 
-
- */
-
-
 using System;
-using TREINO.Entities.Exceptions;
+using treino.Exception;
 
-
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    class ContaBancaria
+    public class ContaBancaria
     {
-        public int NumeroConta{ get; private set; }
-        public string NomeTitular{ get; set; }
-        public double Saldo { get; private set; }
-        public double SaqueLimite { get; private set; }
+        private int _numeroConta{ get; set; }
+        private string _titularConta{ get; set; }
+        private decimal _saldoConta{ get; set; }
+        private decimal SaqueLimiteConta{ get; set; } = 10000.00m;
 
-        public ContaBancaria(int numeroConta, string nomeTitular)
+        public ContaBancaria(int numeroConta, string titularConta)
         {
-            if(NumeroConta.ToString().Length > 5) {
-                throw new DomainExceptions(">O número da conta deve conter no máximo 5 dígitos.");
-            }
-            NumeroConta = numeroConta;
-            NomeTitular = nomeTitular;
+            _numeroConta = numeroConta;
+            _titularConta = titularConta;
         }
 
-        public void Deposito(double valor)
+        public void Depositar(decimal valorDeposito)
+            => _saldoConta += valorDeposito;
+
+        public void Sacar(decimal valorSaque)
         {
-            Saldo += valor;
-        }
-        public void Saque(double valor)
-        {
-            SaqueLimite = 5000.00;
-            if(valor > Saldo)
-            {
-                throw new DomainExceptions($">Valor de saque excedeu o saldo de R${SaqueLimite} reais em conta!");
-            }
-            if(valor > SaqueLimite)
-            {
-                throw new DomainExceptions($">Valor de saque não pode ultrapassar R${SaqueLimite} reais no mesmo dia!\n>Tente um valor inferior.");
-            }
-            else
-            {
-                Saldo -= valor;
-            }
+            if (_saldoConta < valorSaque)
+                throw new ExceptionPersonalizada($"Saldo da conta insulficiente. Saldo: R${_saldoConta:F2}");
+
+            if(valorSaque > SaqueLimiteConta)
+                throw new ExceptionPersonalizada($"Valor do saque superior ao limite de saque de R${SaqueLimiteConta:F2} para a conta");
+
+            _saldoConta -= valorSaque;
         }
         public override string ToString()
         {
-            return $">Numero da conta: {NumeroConta}\n" +
-                   $">Nome do titular: {NomeTitular}\n" +
-                   $">Saldo atual: R${Saldo:F2}\n";
+            return $">Numero da conta: {_numeroConta}\n" +
+                   $">Nome do titular: {_titularConta}\n" +
+                   $">Saldo atual: R${_saldoConta:F2}\n";
         }
     }
 }
