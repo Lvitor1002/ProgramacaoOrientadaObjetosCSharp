@@ -1,0 +1,8 @@
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\bin\Debug\Etapa1.exe.config
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\bin\Debug\Etapa1.exe
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\bin\Debug\Etapa1.pdb
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\obj\Debug\Etapa1.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\obj\Debug\Etapa1.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\obj\Debug\Etapa1.exe
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\obj\Debug\Etapa1.pdb
+C:\Users\Luiz\Desktop\Repositórios Locais\PROJETOS\POO-CSHARP\Curso Microsoft\Etapa1\obj\Debug\Etapa1.exe.config
