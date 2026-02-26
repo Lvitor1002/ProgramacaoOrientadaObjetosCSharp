@@ -1,63 +1,61 @@
 ﻿
-//Ler os dados de um trabalhador;
-//nome,
-//nivel de experiência(junior, pleno, senior),
-//salário base
-
-//Depois, use o mês e o ano (MM/YYYY) para calcular a renda total. 
-
-//exiba os Dados do Trabalhador:
-//                                       Nome,
-//                                       Departamento,
-//                                       Nivel,
-//                                       Renda para a data (mes/ano)
-
-
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using TREINO.Entities.Enums;
-
-namespace TREINO.Entities
+using treino.Entities.Enuns;
+namespace treino.Entities
 {
-    class Trabalhador
+    public class Trabalhador
     {
-        public string Nome { get; set; }
-        public Nivel Nivel { get; set; }
-        public double SalarioBase { get; set; }
-        public string Departamento{ get; set; }
-        public List<Contratos> listaContratos { get; set; } = new List<Contratos>(); //<----- Composição -------> Associação de [Objetos] && Instânciando a lista 
+        private string _nome { get; set; }
+        private string _departamento { get; set; }
+        private Nivel _nivelExperiencia { get; set; }
+        private decimal _salarioBase { get; set; }
+        private List<Contrato> _listaContratos { get; set; } = new List<Contrato> ();
+        private decimal _rendaTotal { get; set; }
 
-
-        public Trabalhador(string nome, Nivel nivel, double salarioBase, string departamento)
+        public Trabalhador()
         {
-            Nome = nome;
-            Nivel = nivel;
-            SalarioBase = salarioBase;
-            Departamento = departamento;
         }
 
-        public void AddContrato(Contratos contratos)
+        public Trabalhador(string nome, string departamento, Nivel nivelExperiencia, decimal salarioBase)
         {
-            listaContratos.Add(contratos);
+            _nome = nome;
+            _departamento = departamento;
+            _nivelExperiencia = nivelExperiencia;
+            _salarioBase = salarioBase;
         }
-        public double RendaTotal(int mes, int ano)
-        {
-            double total = SalarioBase;
+        
 
-            total += ListaContratos.Where(c => c.DataContrato.Month == mes && c.DataContrato.Year == ano).Sum(c => c.RendaSimples());
-            return total;
+        public void AdicionarContrato(Contrato contrato)
+            =>_listaContratos.Add(contrato);
+
+        public decimal RetornarRendaTotalTrabalhador(int mes, int ano)
+        {
+            _rendaTotal = _salarioBase += _listaContratos.Where(c => c.DataContrato.Month == mes && c.DataContrato.Year == ano).Sum(c => c.CalcularRendaContrato());
+            return _rendaTotal;
         }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(Contratos c in listaContratos)
-            {
-                sb.Append($">Nome: {Nome}\n" +
-                   $">Departamento: {Departamento}\n" +
-                   $">Nivel de Experiência: {Nivel}");
-            }
+
+            sb.Append($@"
+Nome: {_nome}
+Departamento: {_departamento}
+Salário Base: {_salarioBase:F2}
+Nível de Experiência: {_nivelExperiencia}
+Renda Total: {_rendaTotal:F2}
+
+");
+            if (!_listaContratos.Any())
+                return sb.ToString();
+
+            for (int i = 0; i < _listaContratos.Count; i++)
+                sb.AppendLine($"{i + 1}ª Contrato\n{_listaContratos[i].ToString()}");
+
             return sb.ToString();
         }
     }
 }
-

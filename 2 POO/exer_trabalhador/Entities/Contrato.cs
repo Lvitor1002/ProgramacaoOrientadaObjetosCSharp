@@ -1,39 +1,31 @@
-﻿
+﻿using System;
 
-//em cada N contrato é solicitado;
-//data do contrato(DD/MM/YYYY),
-//valor por hora
-//duração em horas.
-//Calcule a renda para contrato.
-
-
-
-using System;
-using TREINO.Entities.Enums;
-
-
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    class Contratos
+    public class Contrato
     {
-        public DateTime DataContrato{ get; set; }
-        public double ValorPorHora { get; set; }
-        public int DuracaoHoras { get; set; }
+        public DateTime DataContrato { get; set; }
+        private decimal _valorPorHora { get; set; }
+        private int _duracaoEmHorasContrato { get; set; }
 
-        public Contratos()
-        {
-        }
-        public Contratos(DateTime dataContrato, double valorPorHora, int duracaoHoras)
+        public Contrato(DateTime dataContrato, decimal valorPorHora, int duracaoEmHorasContrato)
         {
             DataContrato = dataContrato;
-            ValorPorHora = valorPorHora;
-            DuracaoHoras = duracaoHoras;
+            _valorPorHora = valorPorHora;
+            _duracaoEmHorasContrato = duracaoEmHorasContrato;
         }
 
-        public double RendaSimples()
+        public decimal CalcularRendaContrato()
+            => _valorPorHora * _duracaoEmHorasContrato;
+
+        public override string ToString()
         {
-            return ValorPorHora * DuracaoHoras;
+            return $@"
+Data Contrato: {DataContrato.ToString("dd/MM/yyyy")}
+Valor Recebido Por Hora: {_valorPorHora:F2}
+Duração em Horas do Contrato: {_duracaoEmHorasContrato} horas.
+
+";
         }
-        
     }
 }
