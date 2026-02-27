@@ -1,149 +1,124 @@
 ﻿
 /*
+
+
 Em um portal de cursos online, cada usuário possui um código único, representado por um número inteiro.
 
-Cada instrutor do portal pode ter vários cursos, 
+Cada _instrutor do portal pode lecionar vários cursos, 
 sendo que um mesmo aluno pode se matricular em quantos cursos quiser. 
 
-Assim, o número total de alunos de um instrutor não é simplesmente a soma dos alunos de todos os cursos que ele possui, pois pode haver alunos repetidos em mais de um curso.
+Assim, o número total de alunos de um _instrutor não é simplesmente a soma dos alunos de todos os cursos que ele possui, pois pode haver alunos repetidos em mais de um curso.
 
-O instrutor Alex possui quatro cursos exatas e humanas e deseja saber seu número total de alunos..
+O _instrutor Alex possui quatro cursos exatas e humanas e deseja saber seu número total de alunos..
 
 Seu programa deve ler os;
-                        alunos dos cursos exatas e humanas do instrutor Alex 
+                        alunos dos cursos exatas e humanas do _instrutor Alex 
                         depois mostrar a quantidade total de alunos dele.
- */
-
+ 
+*/
 
 using System;
-using System.Linq;
 using System.Globalization;
-
-using TREINO.Entities;
-using System.Collections.Generic;
-
+using System.Linq;
+using treino.Entities;
+using treino.Entities.Enuns;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
+            => ExibirInfos();
+
+        private static Instrutor _instrutor;
+
+        private static void PopularAlunos()
         {
-            Exibir();
+            Curso[] cursos = { Curso.Exatas, Curso.Humanas };
+            int quantidadeAlunos = 0;
+            string nomeAluno;
+            int idAluno;
+            
+            foreach (Curso curso in cursos)
+            {
+                Console.Clear();
+                while (true)
+                {
+                    Console.Write($"Quantos alunos no curso {curso}? ");
+                    string entrada = Console.ReadLine().Trim();
+                    
+                    if(!int.TryParse(entrada, out quantidadeAlunos) || quantidadeAlunos <= 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Entrada inválida. Entre com um número inteiro maior que zero.");
+                        continue;
+                    }
+                    break;
+                }
+
+                for (int i = 0; i < quantidadeAlunos; i++) {
+                    Console.Clear();
+                    Console.WriteLine($"{i+1}ª Aluno");
+
+                    while (true)
+                    {
+                        Console.Write($"Entre com o nome do aluno: ");
+                        nomeAluno = Console.ReadLine().Trim().ToLower();
+
+                        if (string.IsNullOrWhiteSpace(nomeAluno) || !nomeAluno.All(c=>char.IsLetter(c) || c == ' '))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Entrada inválida. Entre com um nome válido.");
+                            continue;
+                        }
+                        nomeAluno = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeAluno.ToLower());
+                        break;
+                    }
+                    while (true)
+                    {
+                        Console.Write($"Entre com o id do aluno {nomeAluno}: ");
+                        string entrada = Console.ReadLine().Trim();
+
+                        if (!int.TryParse(entrada, out idAluno) || quantidadeAlunos <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Entrada inválida. Entre com um número inteiro maior que zero.");
+                            continue;
+                        }
+                        break;
+                    }
+                    _instrutor.AdicionarAluno(new Alunos(idAluno, nomeAluno, curso));
+                }
+            }
         }
-        static (HashSet<int> exatas, HashSet<int> humanas, Instrutor instrutor) Leitura()
+        private static void PopularInstrutor()
         {
-            HashSet<int> exatas = new HashSet<int>();
-            HashSet<int> humanas = new HashSet<int>();
-       
-
             string nomeInstrutor;
-            int idAluno, qtdExatas = 0,qtdHumanas = 0;
-
             while (true)
             {
-                Console.Write(">Qual o nome do instrutor: ");
+                Console.Write($"Entre com o nome do Instrutor: ");
                 nomeInstrutor = Console.ReadLine().Trim().ToLower();
 
-                if(!string.IsNullOrWhiteSpace(nomeInstrutor) && nomeInstrutor.All(c=>char.IsLetter(c) || c==' '))
-                {
-                    nomeInstrutor = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeInstrutor.ToLower());
-                    break;
-                }
-                else
+                if (string.IsNullOrWhiteSpace(nomeInstrutor) || !nomeInstrutor.All(c => char.IsLetter(c) || c == ' '))
                 {
                     Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Digite um nome válido!");
+                    Console.WriteLine("Entrada inválida. Entre com um nome válido.");
+                    continue;
                 }
+                nomeInstrutor = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeInstrutor.ToLower());
+                break;
             }
-            Instrutor instrutor = new Instrutor(nomeInstrutor);
-            Console.Clear();
-            while (true)
-            {
-                Console.Write($">Quantos alunos o instrutor {nomeInstrutor} possui em exatas? ");
-                string qtd = Console.ReadLine().Trim();
-
-                if (int.TryParse(qtd, out qtdExatas) && qtdExatas >= 0)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Digite um número 'inteiro' válido!");
-                }
-            }
-            Console.WriteLine($">Digite o id para cada aluno de exatas: ");
-            for (int i = 0; i < qtdExatas; i++)
-            {
-                while (true)
-                {
-                    Console.Write($"{i+1}ª ID: ");
-
-                    string idaluno = Console.ReadLine().Trim();
-                    if(int.TryParse(idaluno, out idAluno) && idAluno >= 0)
-                    {
-                        exatas.Add(idAluno);
-                        break;
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine(">Entrada inválida. Digite um número 'inteiro' válido!");
-                    }
-                }
-            }
-            Console.Clear();
-            while (true)
-            {
-                Console.Write($">E quantos em humanas? ");
-                string qtd = Console.ReadLine().Trim();
-
-                if (int.TryParse(qtd, out qtdHumanas) && qtdHumanas >= 0)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine(">Entrada inválida. Digite um número 'inteiro' válido!");
-                }
-            }
-            Console.WriteLine($">Digite o id para cada aluno de humanas: ");
-            for (int i = 0; i < qtdHumanas; i++)
-            {
-                while (true)
-                {
-                    Console.Write($"{i + 1}ª ID: ");
-
-                    string idaluno = Console.ReadLine().Trim();
-                    if (int.TryParse(idaluno, out idAluno) && idAluno >= 0)
-                    {
-                        humanas.Add(idAluno);
-                        break;
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine(">Entrada inválida. Digite um número 'inteiro' válido!");
-                    }
-                }
-            }
-            return (exatas, humanas, instrutor);
+            _instrutor = new Instrutor(nomeInstrutor);
         }
-        static void Exibir()
+
+        private static void ExibirInfos()
         {
-            var (exatas, humanas, instrutor) = Leitura();
-            
-
-            HashSet<int> todos = new HashSet<int>(exatas);    //Garante que não há duplicação de ID's:
-            
-            //Exatas junta com humanas para então diferencialos no .Count
-            todos.UnionWith(humanas);
+            PopularInstrutor();
+            PopularAlunos();
 
             Console.Clear();
-            Console.WriteLine(instrutor);
-            Console.WriteLine($">Quantidade total de alunos distintos em seus dois cursos: {todos.Count}\n");
+            Console.WriteLine(_instrutor.ToString());
         }
-    }
+    }    
 }
+

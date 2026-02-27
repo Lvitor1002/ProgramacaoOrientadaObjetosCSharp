@@ -33,6 +33,7 @@ namespace TREINO
 {
     class Program
     {
+        private static Trabalhador _trabalhador;
         static void Main()
             => ExibirInfos();
 
@@ -41,7 +42,7 @@ namespace TREINO
             DateTime dataContrato;
             decimal valorPorHora;
             int duracaoEmHorasContrato, qtdContratos;
-            var trabalhador = PopularTrabalhador();
+            
 
             while (true)
             {
@@ -97,14 +98,12 @@ namespace TREINO
                     break;
                 }
                 
-                trabalhador.AdicionarContrato(new Contrato(dataContrato, valorPorHora, duracaoEmHorasContrato));
+                _trabalhador.AdicionarContrato(new Contrato(dataContrato, valorPorHora, duracaoEmHorasContrato));
             }
-            trabalhador.RetornarRendaTotalTrabalhador(02, 2026); //Inserido manualmente. Ganho de tempo
+            _trabalhador.RetornarRendaTotalTrabalhador(02, 2026); //Inserido manualmente. Ganho de tempo
             
-            Console.Clear();
-            Console.WriteLine(trabalhador);
         }
-        private static Trabalhador PopularTrabalhador()
+        private static void PopularTrabalhador()
         {
             string nome, departamento;
             Nivel nivelExperiencia;
@@ -160,11 +159,14 @@ namespace TREINO
                 }
                 break;
             }
-            return new Trabalhador(nome, departamento, nivelExperiencia, salarioBase);
+            _trabalhador = new Trabalhador(nome, departamento, nivelExperiencia, salarioBase);
         }
 
-        private static void ExibirInfos() 
-            =>PopularContrato();
+        private static void ExibirInfos()
+        {
+            Console.Clear();
+            Console.WriteLine(_trabalhador);
+        }
     }    
 }
 
