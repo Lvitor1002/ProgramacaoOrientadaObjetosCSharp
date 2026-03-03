@@ -1,0 +1,8 @@
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\bin\Debug\treino.exe.config
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\bin\Debug\treino.exe
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\bin\Debug\treino.pdb
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\obj\Debug\treino.csproj.AssemblyReference.cache
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\obj\Debug\treino.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\obj\Debug\treino.exe
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\obj\Debug\treino.pdb
+C:\Users\Luiz\Desktop\csharp\Treino APIs\treino\obj\Debug\treino.exe.config

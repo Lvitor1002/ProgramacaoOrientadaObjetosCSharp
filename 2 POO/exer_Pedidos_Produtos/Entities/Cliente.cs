@@ -1,24 +1,25 @@
-﻿
+﻿using System;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Cliente
+    public class Cliente
     {
-        public string Nome{ get; set; }
-        public string Email{ get; set; }
-        public DateTime DataNascimento { get; set; }
+        private string _nome { get; set; }
+        private string _email { get; set; }
+        private DateTime _dataNascimento { get; set; }
 
         public Cliente(string nome, string email, DateTime dataNascimento)
         {
-            Nome = nome;
-            Email = email;
-            DataNascimento = dataNascimento;
+            _nome = nome;
+            _email = email;
+            _dataNascimento = dataNascimento;
         }
+
+        public override string ToString()
+            =>$@"
+Nome do Cliente: {_nome}
+Email do Cliente: {_email}
+Data de Nasciment do Cliente: {_dataNascimento.ToString("dd/MM/yyyy")}
+";
     }
 }

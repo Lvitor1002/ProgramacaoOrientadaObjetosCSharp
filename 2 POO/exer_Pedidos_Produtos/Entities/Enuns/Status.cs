@@ -1,8 +1,8 @@
 ﻿
 
-namespace TREINO.Enums
+namespace treino.Entities.Enuns
 {
-    internal enum Status:int
+    public enum Status:int
     {
         Preparando = 1,
         Concluido = 2,

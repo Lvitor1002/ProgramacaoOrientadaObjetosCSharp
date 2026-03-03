@@ -1,60 +1,52 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TREINO.Enums;
+using treino.Entities.Enuns;
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Pedido
+    public class Pedido
     {
-        public DateTime InstantePedido { get; set; } = DateTime.Now;
-        public Status Status{ get; set; }
-        public Cliente Cliente { get; set; } //<----- Composição -------> Associação de [Objetos]
-        public List<Item> ListaItens { get; set; } = new List<Item>();
-
-        public Pedido(DateTime instantePedido, Status status, Cliente cliente)
+        private DateTime _instanteDoPedido{ get; set; }
+        private Status _status { get; set; }
+        private List<Item> _listaItens { get; set; } = new List<Item>();
+        private Cliente _cliente { get; set; }
+        
+        public Pedido(Status status, Cliente cliente)
         {
-            InstantePedido = instantePedido;
-            Status = status;
-            Cliente = cliente;
+            _instanteDoPedido = DateTime.Now;
+            _status = status;
+            _cliente = cliente;
         }
+        public void AdicionarItemAoPedido(Item item)
+            => _listaItens.Add(item);
 
-        public void Additem(Item item)
-        {
-            ListaItens.Add(item);
-        }
+        private decimal RetornarPrecoTotal()
+            => _listaItens.Sum(i => i.RetornarSubTotal());
 
-        public double Total()
-        {
-            double soma = 0;
-            foreach(Item item in ListaItens)
-            {
-                soma += item.SubTotal();
-            }
-            return soma;
-        }
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("\n\t     Sumário do pedido\n\n");
-            sb.Append($">Instante de compra do pedido: {InstantePedido.ToString("dd/MM/yyyy HH:mm:ss")}\n" +
-                $">Status do Pedido: {Status}\n" +
-                $">Nome do Cliente: {Cliente.Nome}\n" +
-                $">Email do cliente: {Cliente.Email}\n" +
-                $">Data de nascimento do Cliente: {Cliente.DataNascimento.ToString("dd/MM/yyyy")}\n" +
-                $"-----------------------------------------------------------\n\n");
-            
-            sb.AppendLine(">Lista de Itens para o pedido\n");
-            foreach (Item item in ListaItens)
-            {
-                sb.Append($"\t\tNome do item: {item.Nome}\n" +
-                    $"\t\tQuantidade de Unidades: {item.QuantidadeUnidades}\n" +
-                    $"\t\tPreço do item: R${item.SubTotal():F2}\n\n");
-            }
-            sb.AppendLine($"\n>Valor total do pedido: R${Total():F2}\n\n");
+            int soma = 0;
+            var sb = new StringBuilder();
+
+            sb.Append($@"
+Instante do Pedido: {_instanteDoPedido.ToString("dd/MM/yyyy HH:mm")}
+Status do Pedido: {_status}
+{_cliente.ToString()}
+");
+
+            if(!_listaItens.Any())
+                return sb.ToString();
+
+            sb.AppendLine($@"Quantidade de itens: {_listaItens.Count} itens");
+            foreach (var item in _listaItens)
+                sb.Append($@"
+{soma+=1}ª Item 
+{item.ToString()}
+");
+            sb.AppendLine($"Preço Total: {RetornarPrecoTotal():C2}");
+
             return sb.ToString();
         }
     }

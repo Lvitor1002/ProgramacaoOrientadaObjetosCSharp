@@ -1,6 +1,4 @@
 ﻿
-
-
 /*
 Ler os dados de um [pedido]:
                             InstantePedido,
@@ -21,44 +19,53 @@ Depois, mostrar um sumário do pedido;
 Nota: o instante do pedido deve ser o instante do sistema: DateTime.Now
 */
 
-
-
 using System;
-using System.Linq;
-using System.Globalization;
-using TREINO.Entities;
-using TREINO.Enums;
 using System.Collections.Generic;
-using System.Collections;
-
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
+using treino.Entities;
+using treino.Entities.Enuns;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
+        private static Cliente _cliente;
+        private static Pedido _pedido;
+        static void Main()
+            => ExibirInformacoes();
+
+        
+        private static void PopularPedido()
         {
-            Exibir();
+            Status status;
+
+            while (true)
+            {
+                Console.Write("Entre com o status do pedido: [Preparando / Concluido / Enviado] - ");
+                string entrada = Console.ReadLine().Trim();
+                if(!Enum.TryParse<Status>(entrada, true, out status))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Entrada inválida. Digite apenas 'Preparando', 'Concluido' ou 'Enviado'!");
+                    continue;
+                }
+                break;
+            }
+            _pedido = new Pedido(status, _cliente);
         }
-        static Pedido Leitura()
+        private static void PopularCliente()
         {
-            string nome, email, nomeItem;
+            string nome, email;
             DateTime dataNascimento;
-            int quantidadeUnidades = 0, quantidadeItem = 0;
-            double precoItem = 0;
 
-            //Sorteio do status para ser aleatório:
-
-            var valores = Enum.GetValues(typeof(Status));
-            Random sorteio = new Random();
-
-            // Sorteando um índice aleatório
-            Status status = (Status)valores.GetValue(sorteio.Next(valores.Length));
-
-            while(true){
-                Console.Write(">Digite o nome do cliente: ");
-                nome = Console.ReadLine().ToLower().Trim();
-                if (string.IsNullOrEmpty(nome) || !nome.All(c=>char.IsLetter(c) || c == ' ')) {
+            while (true)
+            {
+                Console.Write("Entre com o nome do cliente: ");
+                nome = Console.ReadLine().Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(nome) || !nome.All(c=>char.IsLetter(c) || c == ' '))
+                {
                     Console.Clear();
                     Console.WriteLine("Entrada inválida. Digite um nome válido!");
                     continue;
@@ -68,68 +75,73 @@ namespace TREINO
             }
             while (true)
             {
-                Console.Write(">Digite o email do cliente: ");
-                email = Console.ReadLine().ToLower().Trim();
-                if (string.IsNullOrEmpty(email) || !email.Contains('@') || !email.Contains('.') || email.StartsWith("@") || email.EndsWith("@") || email.StartsWith(".") || email.EndsWith("."))
+                Console.Write($"Entre com o email do cliente. Ex de email válido[nome@gmail.com] - ");
+                email = Console.ReadLine().Trim().ToLower();
+                string padraoEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+                if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email,padraoEmail))
                 {
                     Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite um email válido!");
+                    Console.WriteLine("Entrada inválida. Digite um nome válido!");
                     continue;
                 }
                 break;
             }
             while (true)
             {
-                Console.Write(">Digite a data de nascimento do cliente: [dd/mm/aaaa] - ");
-                string dtNascimento = Console.ReadLine().Trim();
-                if (!DateTime.TryParse(dtNascimento, out dataNascimento))
+                Console.Write("Entre com a data de nascimento do cliente. Ex: 'dd/mm/yyyy' - ");
+                string entrada = Console.ReadLine().Trim();
+                if (!DateTime.TryParse(entrada, out dataNascimento))
                 {
                     Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite uma data válida: [dd/mm/aaaa]!");
+                    Console.WriteLine("Entrada inválida. Digite uma data válida: 'dd/mm/yyyy'!");
                     continue;
                 }
                 break;
             }
-
-            Cliente cliente = new Cliente(nome,email,dataNascimento);
-            Pedido pedido = new Pedido(DateTime.Now, status, cliente);
-
+            _cliente = new Cliente(nome,email,dataNascimento);
+        }
+        private static void PopularItem()
+        {
+            string nome;
+            int unidades, qtdItens = 0; 
+            decimal preco;
             while (true)
             {
-                Console.Write($">Digite a quantidade de Itens ao todo: ");
-                string qtdItemTodo = Console.ReadLine().Trim();
-                if (!int.TryParse(qtdItemTodo, out quantidadeItem) || quantidadeItem <= 0)
+                Console.Write("Digite a quantidade de itens ao todo: ");
+                string entrada = Console.ReadLine().Trim();
+                if (!int.TryParse(entrada, out qtdItens) || qtdItens <= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite um número 'inteiro' positivo!");
+                    Console.WriteLine("Entrada inválida. Digite um número 'inteiro' ou 'real' positivo.");
                     continue;
                 }
                 break;
             }
 
-            for(int i = 0; i < quantidadeItem; i++)
+            for (int i = 0; i < qtdItens; i++) 
             {
                 Console.Clear();
-                Console.Write($"\t      {i+1}ª\n\n");
+                Console.Write($"\t      {i + 1}ª\n\n");
                 while (true)
                 {
                     Console.Write(">Digite o nome do item: ");
-                    nomeItem = Console.ReadLine().ToLower().Trim();
-                    if (string.IsNullOrEmpty(nomeItem) || !nomeItem.All(c => char.IsLetter(c) || c == ' '))
+                    nome = Console.ReadLine().ToLower().Trim();
+                    if (string.IsNullOrEmpty(nome) || !nome.All(c => char.IsLetter(c) || c == ' '))
                     {
                         Console.Clear();
                         Console.WriteLine("Entrada inválida. Digite um nome válido!");
                         continue;
                     }
-                    nomeItem = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeItem.ToLower());
+                    nome= CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nome.ToLower());
                     break;
                 }
 
                 while (true)
                 {
-                    Console.Write($">Digite a quantidade de unidades para este Item - {nomeItem}: ");
+                    Console.Write($">Digite a quantidade de unidades para este Item - {nome}: ");
                     string qtdItem = Console.ReadLine().Trim();
-                    if (!int.TryParse(qtdItem, out quantidadeUnidades) || quantidadeUnidades < 0)
+                    if (!int.TryParse(qtdItem, out unidades) || unidades < 0)
                     {
                         Console.Clear();
                         Console.WriteLine("Entrada inválida. Digite um número 'inteiro' positivo!");
@@ -140,9 +152,9 @@ namespace TREINO
 
                 while (true)
                 {
-                    Console.Write($">Digite o preço do Item {nomeItem}: R$ ");
+                    Console.Write($">Digite o preço do Item {nome}: R$ ");
                     string pItem = Console.ReadLine().Trim();
-                    if (!double.TryParse(pItem, out precoItem) || precoItem <= 0)
+                    if (!decimal.TryParse(pItem, NumberStyles.Any, CultureInfo.InvariantCulture,out preco) || preco <= 0)
                     {
                         Console.Clear();
                         Console.WriteLine("Entrada inválida. Digite um número 'inteiro' ou 'real' positivo!");
@@ -150,17 +162,17 @@ namespace TREINO
                     }
                     break;
                 }
-
-                Item item = new Item(nomeItem,quantidadeUnidades,precoItem);
-                pedido.Additem(item);
+                _pedido.AdicionarItemAoPedido(new Item(nome, unidades, preco));
             }
-            return pedido;
         }
-        static void Exibir()
+        private static void ExibirInformacoes()
         {
-            var pedido = Leitura();
+            PopularCliente();
+            PopularPedido();
+            PopularItem();
+
             Console.Clear();
-            Console.WriteLine(pedido.ToString());
+            Console.WriteLine(_pedido);
         }
     }
 }

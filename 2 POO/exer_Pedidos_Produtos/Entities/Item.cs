@@ -1,23 +1,27 @@
-﻿
-
-namespace TREINO.Entities
+﻿namespace treino.Entities
 {
-    internal class Item
+    public class Item
     {
-        public string Nome{ get; set; }
-        public int QuantidadeUnidades{ get; set; }
-        public double Preco{ get; set; }
-            
-        public Item(string nome, int quantidadeUnidades, double preco)
+        private string _nome { get; set; }
+        private int _unidades { get; set; }
+        public decimal Preco { get; set; }
+
+        public Item(string nome, int unidades, decimal preco)
         {
-            Nome = nome;
-            QuantidadeUnidades = quantidadeUnidades;
+            _nome = nome;
+            _unidades = unidades;
             Preco = preco;
         }
-        public double SubTotal()
-        {
-            return QuantidadeUnidades * Preco;
-        }
 
+        public decimal RetornarSubTotal()
+            => _unidades * Preco;
+
+        public override string ToString()
+            => $@"
+Nome: {_nome}
+Unidade: {_unidades}
+Preço: {Preco:C2}
+----------------------------
+";
     }
 }
