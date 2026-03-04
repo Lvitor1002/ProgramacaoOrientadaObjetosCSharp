@@ -1,14 +1,12 @@
-﻿using System;
-
-
-namespace exer_expressoes2.Entities
+﻿
+namespace treino.Entities
 {
-    class Produto
+    public class Produto
     {
         public string Nome { get; set; }
-        public double Preco { get; set; }
+        public decimal Preco{ get; set; }
 
-        public Produto(string nome, double preco)
+        public Produto(string nome, decimal preco)
         {
             Nome = nome;
             Preco = preco;

@@ -1,15 +1,13 @@
-﻿using System;
-
-
-namespace exer_expressoes3.Entities
+﻿
+namespace treino.Entities
 {
-    class Funcionarios
+    public class Funcionario
     {
         public string Nome { get; set; }
         public string Email { get; set; }
-        public double Salario { get; set; }
+        public decimal Salario{ get; set; }
 
-        public Funcionarios(string nome, string email, double salario)
+        public Funcionario(string nome, string email, decimal salario)
         {
             Nome = nome;
             Email = email;
