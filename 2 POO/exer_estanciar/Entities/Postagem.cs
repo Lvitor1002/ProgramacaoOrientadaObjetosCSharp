@@ -1,53 +1,47 @@
-﻿
-//Post:
-//21 / 06 / 2018 13:05:44
-//                            Viajando para a Nova Zelândia
-//                            Vou visitar esse país maravilhoso!
-//                            12 curtidas    
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Post
+    public class Postagem
     {
-        public DateTime DataPublicacao { get; set; } = DateTime.UtcNow;
-        public string Titulo { get; set; }
-        public string Descricao{ get; set; }
-        public int QuantidadeCurtidas{ get; set; }
-        public List<Comentario> ListaComentarios { get; set; } = new List<Comentario>();
+        private DateTime _dataPostagem{ get; set; }
+        private string _descricaoPostagem { get; set; }
+        private int _quantidadeCurtidasPostagem { get; set; }
+        private List<Comentario> _listaComentarios { get; set; } = new List<Comentario>();
 
-        public Post(DateTime dataPublicacao, string titulo, string descricao, int quantidadeCurtidas)
+        public Postagem(string descricaoPostagem, int quantidadeCurtidasPostagem)
         {
-            DataPublicacao = dataPublicacao;
-            Titulo = titulo;
-            Descricao = descricao;
-            QuantidadeCurtidas = quantidadeCurtidas;
+            _dataPostagem = DateTime.Now;
+            _descricaoPostagem = descricaoPostagem;
+            _quantidadeCurtidasPostagem = quantidadeCurtidasPostagem;
         }
 
-        public void AddComentario(Comentario comentario)
-        {
-            ListaComentarios.Add(comentario);
-        }
+        public void AdicionarComentariosNaPostagem(Comentario comentario)
+            =>_listaComentarios.Add(comentario);
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-     
-            sb.Append($"Data e hora: {DataPublicacao.ToString("dd/MM/yyyy HH:mm:ss")}\n" +
-                $"'{Titulo}'\n" +
-                $"'{Descricao}'\n" +
-                $"{QuantidadeCurtidas} curtidas\n\n" +
-                $"\t    Comentários\n\n");
+            var sb = new StringBuilder();
+            int i = 0;
 
-            foreach (var c in ListaComentarios)
-            {
-                sb.Append($"'{c.Descricao}'\n");
-            }
+            sb.Append($@"
+Postado em {_dataPostagem.ToString("dd/MM/yyy HH:mm")}
+{_descricaoPostagem}
+{_quantidadeCurtidasPostagem} Curtidas
+
+");
+            
+            if(!_listaComentarios.Any())
+                return sb.ToString();
+
+            sb.AppendLine("Comentários:");
+            foreach (var comentario in _listaComentarios)
+                sb.AppendLine(comentario.ToString());
+            
             return sb.ToString();
         }
-
     }
 }

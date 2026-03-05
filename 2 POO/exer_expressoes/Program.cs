@@ -59,27 +59,21 @@ namespace TREINO
             var produtosSimples900 = produtos.Where(p=>p.Preco < 900 && p.Categoria.Nivel == Nivel.Simples).Select(p=> new { p.Preco, p.Categoria.Nivel } ).ToList();
             Console.WriteLine(">Produtos de categoria [simples] com preço menor que R$900:\n");
             foreach(var p in produtosSimples900)
-            {
                 Console.WriteLine(p);
-            }
 
 
             //Nome dos produtos da categoria Escolar
             var nomeCategoriaEscolar = produtos.Where(c => c.Categoria.Nome == "Escolar").Select(c => new { c.Nome, c.Categoria.Nivel });
             Console.WriteLine("\n>Nome dos produtos da categoria Escolar:\n");
             foreach(var n in nomeCategoriaEscolar)
-            {
                 Console.WriteLine(n);
-            }
 
 
             //Produtos de Categoria 2 ordenados por preço 
             var produtosC2 = produtos.Where(c=>c.Categoria.Nivel == Nivel.Medio).OrderBy(c => c.Preco).Select(c =>new {c.Categoria.Nivel,c.Preco}).ToList();
             Console.WriteLine("\n>Produtos de Categoria 2 ordenados por preço:\n");
             foreach(var n in produtosC2)
-            {
                 Console.WriteLine(n);
-            }
 
 
             //Maior preço da lista

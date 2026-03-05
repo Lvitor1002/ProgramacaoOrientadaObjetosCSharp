@@ -1,18 +1,16 @@
 ﻿
-//Comentários:
-//Tenham uma boa viagem
-//                            Uau, isso é demais
+using System.Text;
 
-
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Comentario
+    public class Comentario
     {
-        public string Descricao{ get; set; }
+        private string _comentario { get; set; }
 
-        public Comentario(string descricao) {
-        
-            Descricao = descricao;
-        }
+        public Comentario(string comentarios)
+            =>_comentario = comentarios;
+
+        public override string ToString()
+            =>$"{_comentario.ToString()}\n";
     }
 }
