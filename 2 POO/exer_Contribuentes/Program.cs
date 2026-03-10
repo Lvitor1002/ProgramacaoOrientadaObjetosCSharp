@@ -16,7 +16,8 @@ Pessoa física:
              pessoas cuja renda foi abaixo de 20000.00 pagam 15% de imposto. 
              Pessoas com renda de 20000.00 em diante pagam 25% de imposto. 
              Se a pessoa teve gastos com saúde, 50% destes gastos são abatidos no imposto.
-Exemplo: uma pessoa cuja renda foi 50000.00 e teve 2000.00 em gastos com saúde, o imposto fica: (50000 * 25%) - (2000 * 50%) = 11500.00
+Exemplo: uma pessoa cuja renda foi 50000.00 e 
+            teve 2000.00 em gastos com saúde, o imposto fica: (50000 * 25%) - (2000 * 50%) = 11500.00
 
 Pessoa jurídica: 
                 pessoas jurídicas pagam 16% de imposto. 
@@ -28,58 +29,65 @@ Por fim, exibir;
                 total de imposto arrecadado.
  */
 
-
-
 using System;
-using System.Linq;
-using System.Globalization;
 using System.Collections.Generic;
-using System.Collections;
-using TREINO.Entities;
-using TREINO.Enums;
-
-
+using System.Globalization;
+using System.Linq;
+using treino.Entities;
+using treino.Entities.Enuns;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void Main()
+            => ExibirInformacoes();
+
+        private static List<Contribuinte> RetornarListaContribuintes()
         {
-            Exibir();
-        }
-        public static List<Colaborador> Leitura()
-        {
-            var listaPessoas = new List<Colaborador>();
+            decimal gastoComSaude, rendaMensal;
+            int quantidadeFuncionarios, quantidadeContribuinte = 0;
+            TipoContribuintes tipoContribuintes;
             string nome;
-            double rendaMensal;
-            Tipo tipo;
-            int quantidadePessoas = 0;
+            var listaContribuintes = new List<Contribuinte>();
 
             while (true)
             {
-                Console.Write(">Ao todo, quantas pessoas serão cadastradas? ");
-                string qtd = Console.ReadLine().Trim();
-                if (!int.TryParse(qtd, out quantidadePessoas) || quantidadePessoas < 0)
+                Console.Write("Entre com a quantidade de contribuintes a ser cadastrados: ");
+                string entrada = Console.ReadLine().Trim();
+                if (!int.TryParse(entrada, out quantidadeContribuinte) || quantidadeContribuinte <= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite um valor 'inteiro' positivo.");
+                    Console.WriteLine("Entrada inválida. Digite um número 'inteiro' e maior que zero!");
                     continue;
                 }
                 break;
             }
 
-            Console.Clear();
-            for(int i = 0; i < quantidadePessoas; i++){
-
+            for (int i = 0; i < quantidadeContribuinte; i++) 
+            {
                 Console.Clear();
-                Console.Write($"\t\t{i+1}ª Pessoa:\n\n");
+                Console.WriteLine($"{i+1}ª Contribuinte");
 
                 while (true)
                 {
-                    Console.Write(">Digite o nome do funcionario: ");
-                    nome = Console.ReadLine().ToLower().Trim();
-                    if (string.IsNullOrWhiteSpace(nome) || !nome.All(c => char.IsLetter(c) || c == ' '))
+                    Console.Write("Entre com tipo de contribuinte. Pessoa: [Fisica | Juridica] ");
+                    string entrada = Console.ReadLine().Trim();
+                    if (!Enum.TryParse<TipoContribuintes>(entrada, true, out tipoContribuintes))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Entrada inválida. Digite apenas 'Fisica' ou 'Juridica'!");
+                        continue;
+                    }
+                    break;
+                }
+
+                while (true)
+                {
+                    Console.Write("Entre com o nome do contribuinte: ");
+                    nome = Console.ReadLine().Trim().ToLower();
+                    if (string.IsNullOrWhiteSpace(nome) || !nome.All(c=>char.IsLetter(c) || c == ' '))
                     {
                         Console.Clear();
                         Console.WriteLine("Entrada inválida. Digite um nome válido!");
@@ -90,83 +98,67 @@ namespace TREINO
                 }
                 while (true)
                 {
-                    Console.Write($">{nome} é pessoa; [Fisica / Juridica]? ");
-                    string tPessoa = Console.ReadLine().Trim();
-                    if (!Enum.TryParse<Tipo>(tPessoa, true, out tipo))
+                    Console.Write("Entre com a renda mensal do contribuintes: ");
+                    string entrada = Console.ReadLine().Trim();
+                    if (!decimal.TryParse(entrada, out rendaMensal) || rendaMensal < 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("Entrada inválida. Digite apenas: [fisica ou juridica]");
-                        continue;
-                    }
-                    break;
-                }
-                while (true)
-                {
-                    Console.Write($">{nome}, qual sua renda mensal? R$");
-                    string rMensal = Console.ReadLine().Trim();
-                    if (!double.TryParse(rMensal, out rendaMensal) || rendaMensal <= 0)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Entrada inválida. Digite um valor 'inteiro' ou 'real' positivo.");
+                        Console.WriteLine("Entrada inválida. Digite um número 'inteiro' ou 'real', maior ou igual à zero!");
                         continue;
                     }
                     break;
                 }
 
-                if (tipo == Tipo.Fisica)
+                if(tipoContribuintes == TipoContribuintes.Juridica)
                 {
-                    double gastoSaude;
                     while (true)
                     {
-                        Console.Write($">{nome}, qual o valor gasto com saúde?\n>Caso contrário digite zero\n");
-                        string gSaude = Console.ReadLine().Trim();
-                        if (!double.TryParse(gSaude, out gastoSaude) || gastoSaude < 0)
+                        Console.Write($"Entre com a quantidade de funcionarios do contribuintes {tipoContribuintes}: ");
+                        string entrada = Console.ReadLine().Trim();
+                        if (!int.TryParse(entrada, out quantidadeFuncionarios) || quantidadeFuncionarios < 0)
                         {
                             Console.Clear();
-                            Console.WriteLine("Entrada inválida. Digite um valor 'inteiro' ou 'real' positivo.");
+                            Console.WriteLine("Entrada inválida. Digite um número 'inteiro' e maior ou igual à zero!");
                             continue;
                         }
                         break;
                     }
-                    listaPessoas.Add(new PessoaFisica(gastoSaude, nome, rendaMensal, tipo));
+                    listaContribuintes.Add(new PessoaJuridica(tipoContribuintes,nome,rendaMensal,quantidadeFuncionarios));
                 }
-
-                if (tipo == Tipo.Juridica)
+                if (tipoContribuintes == TipoContribuintes.Fisica)
                 {
-                    int numeroFuncionarios;
                     while (true)
                     {
-                        Console.Write($">{nome}, qual a quantidade total de funcionários atualmente em sua empresa? ");
-                        string nFuncio = Console.ReadLine().Trim();
-                        if (!int.TryParse(nFuncio, out numeroFuncionarios) || numeroFuncionarios < 0)
+                        Console.Write($"Se houve gasto com saúde infrome o valor, se não, digite zero: ");
+                        string entrada = Console.ReadLine().Trim();
+                        if (!decimal.TryParse(entrada, out gastoComSaude) || gastoComSaude < 0)
                         {
                             Console.Clear();
-                            Console.WriteLine("Entrada inválida. Digite um valor 'inteiro' positivo.");
+                            Console.WriteLine("Entrada inválida. Digite um número 'inteiro' ou 'real', maior ou igual à zero!");
                             continue;
                         }
                         break;
                     }
-                    listaPessoas.Add(new PessoaJuridica(numeroFuncionarios, nome, rendaMensal, tipo));
+                    listaContribuintes.Add(new PessoaFisica(tipoContribuintes, nome, rendaMensal, gastoComSaude));
                 }
-
             }
-            return listaPessoas;
+            return listaContribuintes;
         }
-        public static void Exibir()
+
+        private static void ExibirInformacoes()
         {
-            var listaPessoas = Leitura();
-            var totalImposto = listaPessoas.Sum(p => p.Imposto());
+            var listaContribuinte = RetornarListaContribuintes();
 
+            //total de imposto arrecadado.
             Console.Clear();
-            Console.WriteLine("\n--------------------------------------\n" +
-                "\t     Dados de todos os colaboradores");
-            foreach (var p in listaPessoas)
-            {
-                Console.WriteLine(p.ToString());
-            }
-            Console.WriteLine($">Total de imposto dos colaboradores: {totalImposto:F2}\n\n" +
-                $"--------------------------------------------------\n");
+            if (!listaContribuinte.Any())
+                return;
+
+            Console.WriteLine("Contribuintes cadastrados");
+            foreach (var contribuinte in listaContribuinte)
+                Console.WriteLine(contribuinte);
         }
+
     }
 }
 

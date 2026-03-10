@@ -1,78 +1,82 @@
-﻿
-/*
-Na contagem de votos de uma eleição, são gerados vários registros de votação contendo; 
-                                                                                     o nome do candidato,
-                                                                                     quantidade de votos(formato .csv) 
+﻿/*
+Na contagem de votos de uma eleição, 
+são gerados vários registros de votação contendo; 
+                                                o nome do candidato,
+                                                quantidade de votos(formato .csv) 
 que ele obteve em uma urna de votação. 
 
 Você deve fazer um programa para ler os registros de votação a partir de um arquivo, 
 e daí gerar um relatório consolidado com os totais de cada candidato.
 
  */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace exer_Conjuntos_Dicionario
+namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            Exibir();
-        }
-        static Dictionary<string, int> Leitura()
-        {
-            var dici = new Dictionary<string, int>();
 
-            Console.Write(">Entre com o arquivo: ");  //  C:\Users\Luiz\Desktop\c#\14 POO Avançado\exer_Conjuntos_Dicionario\in.txt
-            string arquivo = Console.ReadLine();
+        static void Main()
+            => ExibirInformacoes();
 
+
+        private static Dictionary<string, int> RetornarListaCandidatos()
+        {
+            var dicionarioCandidatos = new Dictionary<string, int>();
+            string nome, arquivo = "";
+            int quantidadeVotos;
+
+            while (true)
+            {
+                Console.Write("Entre com o caminho do arquivo: ");
+                arquivo = Console.ReadLine().Trim();
+                if (string.IsNullOrWhiteSpace(arquivo))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Entrada inválida. Digite um arquivo válido!");
+                    continue;
+                }
+                break;
+            }
             try
             {
                 using (StreamReader sr = File.OpenText(arquivo))
                 {
-                    
-
-                    while (!(sr.EndOfStream))
+                    while (!sr.EndOfStream) 
                     {
-                        string[] registroVotos = sr.ReadLine().Split(',');
+                        string[] dados = sr.ReadLine().Split(',');
+                        nome = dados[0];
 
-                        string candidato = registroVotos[0];
-                        int votos = int.Parse(registroVotos[1]);
+                        if (!int.TryParse(dados[1], out quantidadeVotos))
+                            continue;
 
-                        //agrupar votos por nome
-                        if (dici.ContainsKey(candidato))
-                        {
-                            // Chave do dici
-                            dici[candidato] += votos;
-                        }
-                        else
-                        {
-                            dici[candidato] = votos;
+                        if (!dicionarioCandidatos.ContainsKey(nome))
+                            dicionarioCandidatos[nome] = 0;
 
-                        }
+                        dicionarioCandidatos[nome] += quantidadeVotos; 
                     }
                 }
-
-            }catch(IOException e)
-            {
-                Console.WriteLine(">Erro inesperado!");
-                Console.WriteLine(e.Message);
             }
-            
-            return dici;
+            catch (IOException ex) 
+            {
+                Console.Clear();
+                Console.WriteLine(ex.Message);
+            }
+            return dicionarioCandidatos;
         }
 
-        static void Exibir()
+        private static void ExibirInformacoes()
         {
-            var dici = Leitura();
+            var dicionarioCandidatos = RetornarListaCandidatos();
 
             Console.Clear();
-            foreach (var i in dici)
-            {
-                Console.WriteLine(i.Key + ": " + i.Value);
-            }
+            Console.WriteLine("Lista de Candidatos\n");
+            foreach(var candidatos in dicionarioCandidatos)
+                Console.WriteLine($"{candidatos.Key}: {candidatos.Value}");
         }
     }
 }
+

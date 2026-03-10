@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TREINO.Entities
+﻿
+namespace treino.Entities
 {
-    interface IColaborador
+    public interface IContribuintes
     {
-        double Imposto();
+        decimal CalcularImposto();
     }
 }

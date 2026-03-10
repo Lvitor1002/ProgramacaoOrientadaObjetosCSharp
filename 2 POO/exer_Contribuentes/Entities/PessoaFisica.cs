@@ -1,48 +1,34 @@
-﻿//Pessoa física: 
-//             pessoas cuja renda foi abaixo de 20000.00 pagam 15% de imposto. 
-//             Pessoas com renda de 20000.00 em diante pagam 25% de imposto. 
-//             Se a pessoa teve gastos com saúde, 50% destes gastos são abatidos no imposto.
-//Exemplo: uma pessoa cuja renda foi 50000.00 e teve 2000.00 em gastos com saúde, o imposto fica: (50000 * 25 %) - (2000 * 50 %) = 11500.00
-    
+﻿
+using treino.Entities.Enuns;
 
-using TREINO.Enums;
-
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class PessoaFisica : Colaborador
+    public class PessoaFisica : Contribuinte
     {
-        public double GastoSaude { get; set; }
+        private decimal _gastoComSaude{ get; set; }
+        public PessoaFisica(TipoContribuintes tipoContribuintes, string nome, decimal rendaMensal, decimal gastoComSaude) :base(tipoContribuintes, nome,rendaMensal)
+            =>_gastoComSaude = gastoComSaude;
 
-        public PessoaFisica(double gastoSaude, string nome, double rendaMensal, Tipo tipo) : base(nome, rendaMensal, tipo)
+        public override decimal CalcularImposto()
         {
-            GastoSaude = gastoSaude;
+            decimal imposto = 0;
+            if (_gastoComSaude > 0)
+                imposto = (RendaMensal < 20000 ? RendaMensal * 0.15m : RendaMensal * 0.25m) - (_gastoComSaude * 0.5m);
+            
+            return imposto;
         }
-
-        public override double Imposto()
-        {
-            if (GastoSaude > 0)
-            {
-                if (RendaMensal < 20000)
-                {
-                    return (RendaMensal * 0.15) - (GastoSaude * 0.50);
-                }
-                return (RendaMensal * 0.25) - (GastoSaude * 0.50) ;
-            }
-            if (RendaMensal < 20000)
-            {
-                return RendaMensal * 0.15;
-            }
-            return RendaMensal * 0.25;
-        }
-
         public override string ToString()
         {
-            return $"\nPessoa {Tipo.Fisica}\n\n" +
-                $"\tNome: {Nome}\n" +
-                $"\tRenda anual: R${RendaMensal:F2}\n" +
-                $"\tGasto com saúde: R${GastoSaude}\n" +
-                $"\tImposto a pagar: R${Imposto()}\n" +
-                $"--------------------------------------------------\n";
+            string gasto = _gastoComSaude > 0 ? $"Gasto com Saúde: {_gastoComSaude:C2}" : "";
+
+            return $@"
+Tipo de Contribuinte: {TipoContribuintes.Fisica}
+Nome: {Nome}
+Renda Mensal: {RendaMensal:C2}
+Valor do imposto: {CalcularImposto():C2}
+{gasto}
+";
         }
+
     }
 }
