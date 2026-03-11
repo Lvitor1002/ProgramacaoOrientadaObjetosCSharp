@@ -2,66 +2,82 @@
 Um site de internet registra um log de acessos dos usuários. 
 Um [registro] de log consiste no; 
                                 nome de usuário,
-                                instante em que ousuário acessou o site no padrão ISO 8601, separados por espaço.
+                                instante em que ousuário acessou o site no padrão ISO 8601, 
+                                separados por espaço.
 
-Fazer um programa que leia o log de acessos apartir de um arquivo, e daí informe quantos usuários do arquivo que são distintos acessaram o site.
+Fazer um programa que leia o log de acessos apartir de um arquivo, 
+e daí informe quantos usuários do arquivo que são distintos acessaram o site.
  
 Arquivo: C:\Users\Luiz\Desktop\c#\13 POO\14 POO Avançado\exer_Conjuntos\in.txt
  */
 
 using System;
 using System.Collections.Generic;
-using TREINO.Entities;
 using System.IO;
-
+using treino.Entities;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void Main()
+            => ExibirInformacoes();
+
+       
+
+        private static HashSet<Usuario> RetornarHashUsuarios()
         {
-            Exibir();
-        }
-        static HashSet<RegistroLog> Leitura()
-        {
+            string nome, arquivo = "";
+            DateTime instanteAcesso;
+
             //Como a ordem do arquivo não importa, então usarei o hashSet:
-            HashSet<RegistroLog> hash = new HashSet<RegistroLog>();
+            var registroUsuarios = new HashSet<Usuario>();
 
-
-            Console.Write(">Entre com o arquivo: ");
-            string arquivo = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Entre com o caminho do arquivo: ");
+                arquivo = Console.ReadLine().Trim();
+                if (string.IsNullOrWhiteSpace(arquivo))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Entrada inválida. Entre com um caminho válido.");
+                    continue;
+                }
+                break;
+            }
 
             try
             {
-                using (StreamReader sr = File.OpenText(arquivo))
+                using(StreamReader sr = File.OpenText(arquivo))
                 {
                     while (!sr.EndOfStream)
                     {
-                        //Lendo o [nome] e [instante] do arquivo a partir de uma entrada só:
-                        string[] dividido = sr.ReadLine().Split(' ');
+                        string[] dados = sr.ReadLine().Split(' '); 
+                        nome = dados[0];
 
-                        string nome = dividido[0];
-                        DateTime instante = DateTime.Parse(dividido[1]);
+                        if (!DateTime.TryParse(dados[1], out instanteAcesso))
+                            continue;
 
-                        hash.Add(new RegistroLog(nome, instante));
+                        registroUsuarios.Add(new Usuario(nome, instanteAcesso));
                     }
                 }
             }
-            catch(IOException e)
+            catch(IOException ex)
             {
                 Console.Clear();
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.ToString());
             }
-
-            return hash;
+            return registroUsuarios;
         }
-        static void Exibir()
+        private static void ExibirInformacoes()
         {
-            var hash = Leitura();
-            
+            var registroUsuarios = RetornarHashUsuarios();
             Console.Clear();
-            Console.WriteLine($">Quantidade de usuários: {hash.Count}\n");
+            Console.WriteLine("Registros de logs dos usuários:");
+            foreach(var registro in registroUsuarios)
+                Console.WriteLine(registro.ToString());
         }
     }
 }
+
