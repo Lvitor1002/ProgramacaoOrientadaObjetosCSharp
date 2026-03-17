@@ -1,29 +1,25 @@
 ﻿using System;
-using TREINO.Enums;
 
-namespace TREINO.Entities
+using treino.Entities.Enuns;
+
+namespace treino.Entities
 {
-    internal class Circulo : Figura
+    public class Circulo : Figura
     {
+        private double _raio{ get; set; }
+        public Circulo(ECorFigura corFigura, double raio):base(corFigura)
+            => _raio = raio;
 
-        public double Raio{ get; set; }
-
-        public Circulo(double raio, Cor cor, Modelo modelo):base(cor, modelo)
-        {
-            Raio = raio;
-        }
-
-        public override double Area()
-        {
-            return Math.PI * (Math.Pow(Raio, 2));
-        }
+        public override double RetornarAreaFigura()
+            => Math.PI * Math.Pow(_raio,2);
 
         public override string ToString()
-        {
-            return ($"\n\t  {Modelo}\n\n" +
-                $"Cor: {Cor}\n" +
-                $"Raio do círculo: {Raio}\n" +
-                $"Área do círculo: {Area():F2} m²\n\n");
-        }
+    => $@"
+{ETipoFigura.Circulo}
+
+Cor: {CorFigura}
+Raio: {_raio}
+Área da Figura: {RetornarAreaFigura():F2}
+";
     }
 }

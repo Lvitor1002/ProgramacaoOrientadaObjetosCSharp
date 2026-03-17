@@ -1,20 +1,14 @@
 ﻿
-using TREINO.Enums;
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    abstract class Figura : IFigura
+    public abstract class Figura : IFigura
     {
-        public Cor Cor{ get; set; }
-        public Modelo Modelo{ get; set; }
+        public ECorFigura CorFigura{ get; set; }
 
+        public Figura(ECorFigura corFigura )
+            =>CorFigura = corFigura;
 
-        public Figura(Cor cor, Modelo modelo)
-        {
-            Cor = cor;
-            Modelo = modelo;
-        }
-
-        public abstract double Area();
+        public abstract double RetornarAreaFigura();
     }
 }

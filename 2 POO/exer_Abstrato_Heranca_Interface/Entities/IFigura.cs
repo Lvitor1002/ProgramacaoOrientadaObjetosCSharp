@@ -1,9 +1,9 @@
 ﻿
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal interface IFigura
+    public interface IFigura
     {
-        double Area();
+        double RetornarAreaFigura();
     }
 }

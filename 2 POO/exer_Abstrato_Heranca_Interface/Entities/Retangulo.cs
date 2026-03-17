@@ -1,31 +1,29 @@
 ﻿using System;
-using TREINO.Enums;
+using treino.Entities.Enuns;
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Retangulo : Figura
+    public class Retangulo : Figura
     {
-        public double Largura{ get; set; }
-        public double Altura{ get; set; }
+        private double _largura{ get; set; }
+        private double _altura{ get; set; }
 
-        public Retangulo(double largura, double altura, Cor cor, Modelo modelo) : base(cor, modelo)
+        public Retangulo(ECorFigura corFigura, double largura, double altura) : base(corFigura)
         {
-            Largura = largura;
-            Altura = altura;
+            _largura = largura;
+            _altura = altura;
         }
-
-        public override double Area()
-        {
-            return Math.Pow(Altura, 2);
-        }
+        public override double RetornarAreaFigura()
+            => _largura * _altura;
 
         public override string ToString()
-        {
-            return ($"\n\t  {Modelo}\n\n" +
-                $"Cor: {Cor}\n" +
-                $"Largura: {Largura} m²\n" +
-                $"Altura: {Altura} m²\n" +
-                $"Área do retângulo: {Area():F2} m²\n\n");
-        }
+            => $@"
+{ETipoFigura.Retangulo}
+
+Cor: {CorFigura}
+Largura: {_largura}
+Altura: {_altura}
+Área da Figura: {RetornarAreaFigura():F2}
+";
     }
 }
