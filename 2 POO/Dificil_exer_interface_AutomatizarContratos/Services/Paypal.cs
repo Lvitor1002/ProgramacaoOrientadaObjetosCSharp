@@ -1,20 +1,17 @@
 ﻿
+using treino.Services.Interfaces;
 
-namespace TREINO.Services
+namespace treino.Services
 {
-    internal class Paypal : IPaypal
+    public class PayPal : IPayPal
     {
-        private const double JurosMensal = 0.01;
-        private const double Taxa = 0.02;
+        private const decimal JUROS_SIMPLES = 0.01m;
+        private const decimal TAXA = 0.02m;
+        
+        public decimal JurosSimples(decimal capital, int mes)
+        => capital * JUROS_SIMPLES * mes;
 
-        public double JurosSimples(double valor, int mes)
-        {
-            return valor * JurosMensal * mes;
-        }
-
-        public double TaxaPagamento(double valor)
-        {
-            return valor * Taxa;
-        }
+        public decimal TaxaPagamento(decimal valor)
+            => valor * TAXA;
     }
 }

@@ -1,47 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using TREINO.Services;
+using System.Linq;
+using System.Text;
+using treino.Services.Interfaces;
 
-namespace TREINO.Entities
+namespace treino.Entities
 {
-    internal class Contrato
+    public class Contrato
     {
-        public int IdContrato{ get; set; }
-        public DateTime DataContrato { get; set; } = DateTime.UtcNow;
-        public double ValorContrato { get; set; }
-        public List<Parcela> TodasParcelas { get; set; } = new List<Parcela>();
+        public int NumeroContrato{ get; set; }
+        public DateTime DataContrato{ get; set; }
+        public decimal ValorTotalContrato{ get; set; }
+        public List<Parcelas> ListaParcelas { get; set; } = new List<Parcelas>();
 
-        private readonly IPaypal _servicoPagamento;
+        private readonly IPayPal _paypal;
 
-        public Contrato(int idContrato, DateTime dataContrato, double valorContrato, IPaypal servicoPagamento)
+        public Contrato(decimal valorTotalContrato, IPayPal payPal)
         {
-            IdContrato = idContrato;
-            DataContrato = dataContrato;
-            ValorContrato = valorContrato;
-            _servicoPagamento  = servicoPagamento; //<- Injeção de dependência
+            NumeroContrato = new Random().Next(100);
+            DataContrato = DateTime.Now;
+            ValorTotalContrato = valorTotalContrato;
+            _paypal = payPal; //<- Injeção de dependência
         }
 
-        public void AddParcela(Parcela parcela)
-        {
-            TodasParcelas.Add(parcela);
-        }
+        public void AdicionarParcelas(Parcelas parcelas)
+            => ListaParcelas.Add(parcelas);
 
-        public void ProcessamentoContrato(int qtdMeses)
-        {
-            double valorBase = ValorContrato/ qtdMeses;
 
-            for(int mes = 1; mes <= qtdMeses; mes++)
+        public void ProcessarContrato(int qtdMeses)
+        {
+            decimal valorBase = ValorTotalContrato/ qtdMeses;
+
+            for(int mes = 0; mes < qtdMeses; mes++)
             {
                 DateTime dataVencimento = DataContrato.AddMonths(mes);
 
                 // Aplica juros simples (1% ao mês multiplicado pelo número do mês)
-                double valorComJuros = valorBase + _servicoPagamento.JurosSimples(valorBase, mes);
+                decimal valorComJuros = valorBase + _paypal.JurosSimples(valorBase, mes);
 
                 // Adiciona taxa de pagamento (2% sobre o valor atualizado)
-                double valorTotal = valorComJuros * _servicoPagamento.TaxaPagamento(valorComJuros);
+                decimal valorTotal = valorComJuros * _paypal.TaxaPagamento(valorComJuros);
 
-                AddParcela(new Parcela(dataVencimento, valorTotal));
+                AdicionarParcelas(new Parcelas(dataVencimento, valorTotal));
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            int soma = 0;
+
+            sb.Append($@"
+Número do Contrato: {NumeroContrato}
+Data do Contrato: {DataContrato.ToString("dd/MM/yyyy HH:mm")}
+Valor do Contrato: {ValorTotalContrato:C2}
+
+");
+            if(!ListaParcelas.Any())
+                return sb.ToString();
+
+            sb.AppendLine("Parcelas\n");
+            foreach (var p in ListaParcelas)
+                sb.Append($"{soma += 1}ª {p}");
+
+            return sb.ToString();
         }
     }
 }

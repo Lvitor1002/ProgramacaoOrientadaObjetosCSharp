@@ -1,8 +1,8 @@
-﻿
-/*
+﻿/*
 Uma empresa deseja automatizar o processamento de seus contratos. 
 
-O processamento de um contrato consiste em gerar as parcelas a serem pagas para aquele contrato, com base no número de meses desejado.
+O processamento de um contrato consiste em gerar as parcelas a serem pagas para aquele contrato, 
+com base no número de meses desejado.
 
 A empresa utiliza um serviço de pagamento online para realizar o pagamento das parcelas.
 
@@ -13,8 +13,8 @@ Por enquanto, o serviço contratado pela empresa é o do Paypal, que aplica;
                                                                     taxa de pagamento de 2%.
 
 Fazer um programa para ler os dados de um contrato; 
-                                                    número do contrato, 
-                                                    data do contrato,
+                                                    número do contrato(pode ser gerado aleatóriamente), 
+                                                    data do contrato(datetime.now),
                                                     valor total do contrato. 
 
 Em seguida, o programa deve ler; 
@@ -28,32 +28,51 @@ e assim por diante.
 
 Mostrar os dados das parcelas na tela ao final.
 */
-using System;
-using System.Collections.Generic;
-using TREINO.Entities;
-using TREINO.Services;
 
+using System;
+using treino.Entities;
+using treino.Services;
+using treino.Services.Interfaces;
 
 namespace TREINO
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            Exibir();
-        }
-        public static Contrato Leitura()
-        {
-            int idContrato, vezesParcelamento;
-            DateTime dataContrato = DateTime.UtcNow;
-            double valorContrato;
-            
+        static void Main()
+            => ExibirInformacoes();
 
+        private static void PopularContrato()
+        {
+            decimal valorTotalContrato;
             while (true)
             {
-                Console.Write(">Digite o numero do contrato: ");
-                string nContrato = Console.ReadLine().Trim();
-                if(!int.TryParse(nContrato, out idContrato) || idContrato <= 0)
+                Console.Write("Entre com o valor do contrato: R$ ");
+                string entrada = Console.ReadLine().Trim();
+                if(!decimal.TryParse(entrada, out valorTotalContrato) || valorTotalContrato <= 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Entrada inválida. Entre com um valor 'inteiro' maior que zero.");
+                    continue;
+                }
+                break;
+            }
+            IPayPal payPal = new PayPal();
+            var contrato = new Contrato(valorTotalContrato, payPal);
+
+            var numeroMesesParcelamento = RetornarQuantidadeParcelas();
+            contrato.ProcessarContrato(numeroMesesParcelamento);
+
+            Console.Clear();
+            Console.WriteLine(contrato.ToString());
+        }
+        private static int RetornarQuantidadeParcelas()
+        {
+            int numeroMesesParcelamento = 0;
+            while (true)
+            {
+                Console.Write($"Em quantas vezes o valor do contrato será parcelado: ");
+                string entrada = Console.ReadLine().Trim();
+                if (!int.TryParse(entrada, out numeroMesesParcelamento) || numeroMesesParcelamento <= 0)
                 {
                     Console.Clear();
                     Console.WriteLine("Entrada inválida. Digite um número 'inteiro' maior que zero!");
@@ -61,52 +80,11 @@ namespace TREINO
                 }
                 break;
             }
-            while (true)
-            {
-                Console.Write(">Digite o valor do contrato: R$");
-                string vContrato = Console.ReadLine().Trim();
-                if (!double.TryParse(vContrato, out valorContrato) || valorContrato <= 0)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite um número 'inteiro' ou 'real' maior que zero!");
-                    continue;
-                }
-                break;
-            }
-
-            IPaypal servicoPagamento = new Paypal();
-            
-            Contrato contrato = new Contrato(idContrato,dataContrato,valorContrato,servicoPagamento);
-
-            Console.Clear();
-            while (true)
-            {
-                Console.Write($">Em quantas vezes o valor do contrato foi parcelado? ");
-                string xVezes= Console.ReadLine().Trim();
-                if (!int.TryParse(xVezes, out vezesParcelamento) || vezesParcelamento <= 0)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Entrada inválida. Digite um número 'inteiro' maior que zero!");
-                    continue;
-                }
-                break;
-            }
-
-            contrato.ProcessamentoContrato(vezesParcelamento);
-            return contrato;
+            return numeroMesesParcelamento;
         }
+        private static void ExibirInformacoes()
+            => PopularContrato();
 
-        public static void Exibir()
-        {
-            var contrato = Leitura();
-            Console.Clear();
-
-            Console.WriteLine($"\n\t Dados da Parcela\n");
-            foreach (var c in contrato.TodasParcelas)
-            {
-                Console.Write(c.ToString());
-            }
-        }
     }
 }
 
